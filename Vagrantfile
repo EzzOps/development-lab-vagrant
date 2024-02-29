@@ -26,9 +26,11 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y apache2
-    config.vm.provision "shell", inline: <<-SHELL
-      curl -sfL https://get.k3s.io | sh -
-    SHELL
+  SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    curl -sfL https://get.k3s.io | sh -
+  SHELL
   
 end
 
