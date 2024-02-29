@@ -12,18 +12,18 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
     vb.name = "EzzOps"
-    vb.memory = "1024"
+    vb.memory = "2024"
     vb.cpus = 2
   end
 
   config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -y apache2
+   sudo apt-get update
   SHELL
 
   config.vm.provision "shell", inline: <<-SHELL
-    curl -sfL https://get.k3s.io | sh -
+    sudo curl -sfL https://get.k3s.io | sh -
   SHELL
+
 end
 
 
