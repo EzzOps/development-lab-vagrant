@@ -49,3 +49,11 @@ or 127.0.0.1
 5- Exposing the API to the host machine
 
 The line config.vm.network "forwarded_port", guest: 6443, host: 6443 in the Vagrantfile is forwarding the port 6443 from the guest VM to the host machine. This is the default port that Kubernetes API servers listen on, so this line is allowing the Kubernetes API server in the VM to be accessed from the host machine.
+
+6- Syncing Changes
+
+To sync changes in the configuration files like network configuration or VirtualBox configuration, you can use the `vagrant reload` command. This command will restart the VM and apply any changes made to the Vagrantfile.
+
+To sync changes in the script, you can use the `vagrant up --provision` command. This command will start the VM and run the provisioning scripts again, ensuring that any changes made to the script are applied.
+
+Remember to run these commands from the terminal in the directory where your Vagrantfile is located.
