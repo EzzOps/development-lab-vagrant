@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.network "forwarded_port", guest: 8001, host: 8001
   config.vm.network "forwarded_port", guest: 6443, host: 6443
   config.vm.network "public_network", use_dhcp_assigned_default_route: true
   config.vm.network "private_network", ip: "192.168.33.10"
