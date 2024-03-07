@@ -2,30 +2,23 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
   config.vm.hostname = "EzzOps"
   config.vm.box_check_update = false
-
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
-  config.vm.network "forwarded_port", guest: 80, host: 80
-  config.vm.network "forwarded_port", guest: 32208, host: 32208
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 8001, host: 8001
+  # sudo sed -i 's/127.0.0.1/173.212.248.134/' /etc/rancher/k3s/k3s.yaml
+  config.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 6443, host: 6443
-  config.vm.network "public_network", use_dhcp_assigned_default_route: true 
-  config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.synced_folder ".", "/vagrant", nfs: true
-
+  # config.vm.synced_folder ".", "/vagrant", nfs: true
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
     vb.name = "EzzOps"
     vb.memory = "2024"
     vb.cpus = 2
   end
+  # config.vm.provision "shell", path: "script.sh"
 
-  config.vm.provision "shell", path: "script.sh"
-
-  config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
-    ansible.playbook = "playbook.yml"
-  end  
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.verbose = "v"
+  #   ansible.playbook = "playbook.yml"
+  # end  
 
 end
 
